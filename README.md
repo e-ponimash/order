@@ -1,8 +1,8 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-#Тестовое задание добавление заказов на оформление билетов. 
+# Тестовое задание добавление заказов на оформление билетов. 
 
-###Установка и настройка
+### Установка и настройка
 Создать и скорректировать настройки в файле .env (см .env.example)
 
 ```
@@ -20,7 +20,7 @@ php artisan queue:work
 php artisan serve
 ```
 
-###Описание решения
+### Описание решения
 Поставленная задача решается следующим образом:
 Контроллер OrdersController принимает HTTP запрос на добавление заказа, и с помощью сервиса обработки заказов OrderService формирует модель Order и сохраняет ее. 
 В случае успеха также формирует задачу GenerateBarcodeTask на формирование корректного barcode и помещает его в очередь.
@@ -30,7 +30,7 @@ php artisan serve
 Проверка уникальности реализована в виде уникального индекса таблицы orders. Если при сохранении заказа получили ошибку, создаем повторное задание на GenerateBarcodeTask.
 Вторичная проверка и бронирование через внешнее API (BookingServiceInterface) реализуется аналогично.
 
-###Доработка структуры БД №1
+### Доработка структуры БД №1
 Из таблицы orders убираем поля ticket_adult_price, ticket_adult_quantity, tiket_kids_price, ticket_kids_quantity.
 ```sql
 create table orders
@@ -70,7 +70,7 @@ create table tickets (
 )
 ```
 
-###Доработка структуры БД №2
+### Доработка структуры БД №2
 Из таблицы tickets убираем количество билетов в заказе и добавляем barcode, т.к. теперь тут будут храниться каждый отдельный билет заказа.
 ```sql
 create table tickets (
